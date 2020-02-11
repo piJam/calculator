@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+Makefile
+Makefile.Debug
+Makefile.Release
+jamLib/jamLib.pro.user
+jamLib/jamLib.pro.user.*
+/build-*/
+*.user
+
