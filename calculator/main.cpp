@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     {
         for(int j=0; j<5; j++)
         {
-            button[i*5 + j] = new QPushButton(w);
+            button[i*5 + j] = new QPushButton(w);;
             button[i*5 + j] -> resize(40, 40);
             button[i*5 + j] -> move( 10 + (10 + 40) * j, 50 + (10 + 40) * i);
             button[i*5 + j] -> setText(btnText[i*5 + j]);
@@ -38,10 +38,6 @@ int main(int argc, char *argv[])
     w ->show();
 
     w->setFixedSize(w->width(), w->height());
-
-
-
-
 
     ret = a.exec();
 
