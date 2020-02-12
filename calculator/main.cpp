@@ -13,8 +13,16 @@ int main(int argc, char *argv[])
 
     le->move(10, 10);
     le->resize(240, 30);
+    le->setReadOnly(true);
 
     QPushButton* button[20] = {0};
+    const char* btnText[20] =
+       {
+           "7", "8", "9", "+", "(",
+           "4", "5", "6", "-", ")",
+           "1", "2", "3", "*", "<-",
+           "0", ".", "=", "/", "C",
+       };
 
     for(int i=0; i<4; i++)
     {
@@ -23,12 +31,17 @@ int main(int argc, char *argv[])
             button[i*5 + j] = new QPushButton(w);
             button[i*5 + j] -> resize(40, 40);
             button[i*5 + j] -> move( 10 + (10 + 40) * j, 50 + (10 + 40) * i);
+            button[i*5 + j] -> setText(btnText[i*5 + j]);
         }
     }
 
-
-
     w ->show();
+
+    w->setFixedSize(w->width(), w->height());
+
+
+
+
 
     ret = a.exec();
 
