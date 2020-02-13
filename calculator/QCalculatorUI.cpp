@@ -1,16 +1,16 @@
 #include "QCalculatorUI.h"
 
-QCalculator::QCalculator(): QWidget(NULL, Qt::WindowCloseButtonHint)
+QCalculatorUI::QCalculatorUI(): QWidget(NULL, Qt::WindowCloseButtonHint)
 {
 
 }
 
-QCalculator::~QCalculator()
+QCalculatorUI::~QCalculatorUI()
 {
 
 }
 
-bool QCalculator::construct()
+bool QCalculatorUI::construct()
 {
     bool ret = true;
 
@@ -59,9 +59,9 @@ bool QCalculator::construct()
 
 }
 
-QCalculator* QCalculator::NewInstance()
+QCalculatorUI* QCalculatorUI::NewInstance()
 {
-    QCalculator* ret = new QCalculator();
+    QCalculatorUI* ret = new QCalculatorUI();
 
     if( ret == NULL || !ret->construct() )
     {
@@ -72,7 +72,7 @@ QCalculator* QCalculator::NewInstance()
     return ret;
 }
 
-void QCalculator::show()
+void QCalculatorUI::show()
 {
     QWidget::show();
     this->setFixedSize(width(), height());

@@ -6,21 +6,21 @@
 #include <QPushButton>
 
 
-class QCalculator : public QWidget
+class QCalculatorUI : public QWidget
 {
 private:
 
     QLineEdit* m_lineEdit;
     QPushButton* m_button[20];
 
-    QCalculator();
+    QCalculatorUI();
     bool construct();
 
 public:
 
-    static QCalculator* NewInstance();
+    static QCalculatorUI* NewInstance();
     void show();
-    ~QCalculator();
+    ~QCalculatorUI();
 };
 
 #endif // QCALCULATORUI_H

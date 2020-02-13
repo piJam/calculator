@@ -3,17 +3,18 @@
 
 int main(int argc, char *argv[])
 {
-    int ret = 0;
+    int ret = -1;
     QApplication a(argc, argv);
-    QWidget* w = QCalculator::NewInstance();
+    QCalculatorUI* cal = QCalculatorUI::NewInstance();
 
+    if( cal != NULL)
+    {
+         cal->show();
 
-    w->show();
+         ret = a.exec();
 
-
-    ret = a.exec();
-
-    delete w;
+         delete cal;
+    }
 
     return ret;
 }
