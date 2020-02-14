@@ -46,6 +46,8 @@ bool QCalculatorUI::construct()
                m_button[i*5 + j] -> resize(40, 40);
                m_button[i*5 + j] -> move( 10 + (10 + 40) * j, 50 + (10 + 40) * i);
                m_button[i*5 + j] -> setText(btnText[i*5 + j]);
+
+               QObject::connect(m_button[i*5 + j], SIGNAL(clicked(bool)), this, SLOT(onPush()));
            }
            else
            {
@@ -76,4 +78,11 @@ void QCalculatorUI::show()
 {
     QWidget::show();
     this->setFixedSize(width(), height());
+}
+
+void QCalculatorUI::onPush()
+{
+    QPushButton* qbtn = dynamic_cast< QPushButton* > (QObject::sender());
+
+    qDebug() << qbtn->text();
 }

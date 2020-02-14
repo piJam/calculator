@@ -4,10 +4,13 @@
 #include <QWidget>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QDebug>
 
 
 class QCalculatorUI : public QWidget
 {
+    Q_OBJECT
+
 private:
 
     QLineEdit* m_lineEdit;
@@ -16,11 +19,14 @@ private:
     QCalculatorUI();
     bool construct();
 
-public:
+private slots:
+    void onPush();
 
+public:
     static QCalculatorUI* NewInstance();
     void show();
     ~QCalculatorUI();
+
 };
 
 #endif // QCALCULATORUI_H
