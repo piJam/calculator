@@ -29,6 +29,7 @@ bool QCalculatorUI::construct()
         m_lineEdit->move(10, 10);
         m_lineEdit->resize(240, 30);
         m_lineEdit->setReadOnly(true);
+        m_lineEdit->setAlignment(Qt::AlignRight);
     }
     else
     {
@@ -84,5 +85,28 @@ void QCalculatorUI::onPush()
 {
     QPushButton* qbtn = dynamic_cast< QPushButton* > (QObject::sender());
 
-    qDebug() << qbtn->text();
+    QString clickTest = qbtn->text();
+
+    if( clickTest == "<-")
+    {
+        if( clickTest.length() > 0 )
+        {
+            QString test = m_lineEdit->text();
+            test.remove(test.length()-1, 1);
+            m_lineEdit->setText( test );
+        }
+    }
+    else if( clickTest == "C")
+    {
+        m_lineEdit->setText("");
+    }
+    else if( clickTest == "=" )
+    {
+
+    }
+    else
+    {
+        m_lineEdit->setText( m_lineEdit->text() + clickTest );
+    }
+
 }
