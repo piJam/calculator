@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    QCalculatorUI.cpp
+    QCalculatorUI.cpp \
+    QCalculatorDec.cpp
 
 HEADERS += \
-    QCalculatorUI.h
+    QCalculatorUI.h \
+    QCalculatorDec.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
