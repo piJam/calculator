@@ -6,21 +6,6 @@ QCalculatorDec::QCalculatorDec()
     m_exp = "";
     m_result = "";
 
-    QQueue<QString> r = split("+9.11 + ( -3 - 1 ) * -5");
-
-    for(int i=0; i<r.length(); i++)
-       {
-           qDebug() << r[i];
-       }
-
-       QQueue<QString> output;
-
-       transform(r, output);
-
-       for(int i=0; i<output.length(); i++)
-       {
-           qDebug() << output[i];
-       }
 }
 
 QCalculatorDec::~QCalculatorDec()
@@ -87,6 +72,22 @@ int QCalculatorDec::priority(QString s)
 bool QCalculatorDec::expression(const QString& exp)
 {
     bool ret = false;
+    QQueue<QString> exps = split(exp);
+    QQueue<QString> result;
+
+    m_exp = exp;
+
+    if( transform(exps, result) )
+    {
+       m_result = calculate(result);
+
+       ret = ( m_result != "Error" );
+    }
+    else
+    {
+        m_result = "Error";
+    }
+
 
     return ret;
 }
@@ -165,6 +166,89 @@ bool QCalculatorDec::match(QQueue<QString>& exp)
     }
 
     return ret && stack.isEmpty();
+}
+
+QString QCalculatorDec::calculate(QQueue<QString>& exp)
+{
+    QStack<QString> stack;
+
+    QString ret = "Error";
+
+    while( !exp.isEmpty() )
+    {
+        QString e = exp.dequeue();
+        if( isNumber(e) )
+        {
+            stack.push(e);
+        }
+        else if ( isOperator(e) )
+        {
+            QString ro = !stack.isEmpty() ? stack.pop() : "";
+            QString lo = !stack.isEmpty() ? stack.pop() : "";
+            QString result =  calculate(lo, e, ro);
+
+            if( result != "Error")
+            {
+                stack.push(result);
+            }
+            else
+            {
+                break;
+            }
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    if( exp.isEmpty() && stack.size() == 1 && isNumber(stack.top()) )
+    {
+        ret = stack.pop();
+    }
+    return ret;
+}
+
+QString QCalculatorDec::calculate(QString l, QString op, QString r)
+{
+    QString ret = "Error";
+
+    if( isNumber(l) && isNumber(r) )
+    {
+        double ld = l.toDouble();
+        double rd = r.toDouble();
+
+        if( op == "+" )
+        {
+            ret.sprintf("%f", ld + rd);
+        }
+        else if ( op == "-" )
+        {
+            ret.sprintf("%f", ld - rd);
+        }
+        else if ( op == "*" )
+        {
+            ret.sprintf("%f", ld * rd);
+        }
+        else if ( op == "/" )
+        {
+            const double p = 0.000000000000001;
+            if( (-p < rd) && (rd < p) )
+            {
+               ret = "Error";
+            }
+            else
+            {
+                ret.sprintf("%f", ld / rd);
+            }
+        }
+        else
+        {
+            ret = "Error";
+        }
+    }
+
+    return ret;
 }
 
 bool QCalculatorDec::transform(QQueue<QString>& exp, QQueue<QString>& output)

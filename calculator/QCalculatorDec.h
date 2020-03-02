@@ -20,6 +20,8 @@ protected:
     bool isRight(QString s);
     int priority(QString s);
     bool match(QQueue<QString>& exp);
+    QString calculate(QQueue<QString>& exp);
+    QString calculate(QString l, QString op, QString r);
     bool transform(QQueue<QString>& exp, QQueue<QString>& output);
     QQueue<QString> split(const QString& exp);
 

@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QDebug>
-
+#include "QCalculatorDec.h"
 
 class QCalculatorUI : public QWidget
 {

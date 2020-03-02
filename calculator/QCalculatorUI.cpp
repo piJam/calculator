@@ -102,7 +102,10 @@ void QCalculatorUI::onPush()
     }
     else if( clickTest == "=" )
     {
+        QCalculatorDec dec;
+        dec.expression(m_lineEdit->text());
 
+        m_lineEdit->setText( dec.result() );
     }
     else
     {
