@@ -2,7 +2,7 @@
 
 QCalculatorUI::QCalculatorUI(): QWidget(NULL, Qt::WindowCloseButtonHint)
 {
-
+    m_cal = NULL;
 }
 
 QCalculatorUI::~QCalculatorUI()
@@ -75,6 +75,16 @@ QCalculatorUI* QCalculatorUI::NewInstance()
     return ret;
 }
 
+void QCalculatorUI::setCalculator(ICalulator* cal)
+{
+    m_cal = cal;
+}
+
+ICalulator*  QCalculatorUI::getCalculator()
+{
+    return m_cal;
+}
+
 void QCalculatorUI::show()
 {
     QWidget::show();
@@ -101,11 +111,10 @@ void QCalculatorUI::onPush()
         m_lineEdit->setText("");
     }
     else if( clickTest == "=" )
-    {
-        QCalculatorDec dec;
-        dec.expression(m_lineEdit->text());
+    {        
+        m_cal->expression( m_lineEdit->text() );
 
-        m_lineEdit->setText( dec.result() );
+        m_lineEdit->setText( m_cal->result() );
     }
     else
     {

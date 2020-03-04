@@ -4,8 +4,9 @@
 #include <QQueue>
 #include <QDebug>
 #include <QStack>
+#include "ICalculator.h"
 
-class QCalculatorDec
+class QCalculatorDec : public ICalulator
 {
 protected:
     QString m_exp;

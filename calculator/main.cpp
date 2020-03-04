@@ -2,12 +2,13 @@
 #include "QCalculatorUI.h"
 #include "QCalculatorDec.h"
 #include <QDebug>
+#include "QCalculator.h"
 
 int main(int argc, char *argv[])
 {
     int ret = -1;
     QApplication a(argc, argv);
-    QCalculatorUI* cal = QCalculatorUI::NewInstance();
+    QCalculator* cal = QCalculator::newInstance();
 
     if( cal != NULL)
     {
@@ -18,10 +19,6 @@ int main(int argc, char *argv[])
          delete cal;
     }
 
-   /* QCalculatorDec c;
 
-    c.expression( " 5 - 8 * ( 5 - 6 ) " );
-    qDebug() << c.result();
-    */
     return 0;
 }

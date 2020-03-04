@@ -25,11 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    QCalculator.cpp \
         main.cpp \
     QCalculatorUI.cpp \
     QCalculatorDec.cpp
 
 HEADERS += \
+    ICalculator.h \
+    QCalculator.h \
     QCalculatorUI.h \
     QCalculatorDec.h
 

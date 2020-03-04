@@ -5,13 +5,14 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QDebug>
-#include "QCalculatorDec.h"
+#include "ICalculator.h"
 
 class QCalculatorUI : public QWidget
 {
     Q_OBJECT
 
 private:
+    ICalulator* m_cal;
 
     QLineEdit* m_lineEdit;
     QPushButton* m_button[20];
@@ -24,6 +25,10 @@ private slots:
 
 public:
     static QCalculatorUI* NewInstance();
+
+    void setCalculator(ICalulator* cal);
+    ICalulator*  getCalculator();
+
     void show();
     ~QCalculatorUI();
 
